@@ -23,11 +23,18 @@ public class BasePresenter<V> {
 //     */
 //    protected WeakReference<C> context;
 
+    /**
+     * view绑定
+     * @param view
+     */
     public void attachView(V view){
         this.view=new WeakReference<V>(view);
 //        this.context=new WeakReference<C>(context);
     }
 
+    /**
+     * view解绑
+     */
     public void detachView(){
         this.view.clear();
 //        this.context.clear();

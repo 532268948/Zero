@@ -3,6 +3,7 @@ package com.example.zero.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * 作 者： ZUST_YTH
@@ -19,7 +20,8 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends Activit
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter=createPresenter();
-        presenter.attachView((V)this);
+        presenter.attachView((V) this);
+//        Log.e("activity",this.toString());
     }
 
     protected abstract T createPresenter();

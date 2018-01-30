@@ -9,9 +9,15 @@ package com.example.zero.view.splash;
 
 public interface SplashView {
 
-    /**
-     * 打开动画
-     */
-    public void splashAnimation();
+    void splashAnimation();
 
+    void gotoMainActivity();
+
+    void gotoLoginActivity();
+
+    void timeOutException();
+
+    void connectException();
+
+    void socketException();
 }

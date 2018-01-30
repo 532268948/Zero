@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.zero.view.splash.SplashActivity">
     <ImageView
+        android:id="@+id/zero"
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:src="@mipmap/zero"
