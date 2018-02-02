@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transport">#00ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="white_70">#baffffff</color>
+    <color name="white_20">#33ffffff</color>
+    <color name="red">#e51c23</color>
 </resources>

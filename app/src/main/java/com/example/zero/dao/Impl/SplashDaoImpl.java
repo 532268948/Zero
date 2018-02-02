@@ -3,11 +3,14 @@ package com.example.zero.dao.Impl;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.zero.bean.ResponseWrapper;
 import com.example.zero.dao.SplashDao;
 import com.example.zero.utils.CacheUtil;
 import com.example.zero.utils.HttpUtil;
 import com.example.zero.utils.SecretUtil;
 import com.example.zero.utils.StringListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -43,19 +46,26 @@ public class SplashDaoImpl implements SplashDao {
                     Response response = HttpUtil.sendOkHttpRequest(2,2,"login.json/zero="+zero+"&password="+password);
                     responseData=response.body().string();
                     Log.e("login","登陆成功");
-                    responseData=SecretUtil.Decrypt(responseData);
-                    if(responseData.equals("true")){
-                        listener.onResponse("true");
+//                    responseData=SecretUtil.Decrypt(responseData);
+                    ResponseWrapper<String> wrapper=new Gson().fromJson(responseData,new TypeToken<ResponseWrapper<String>>(){}.getType());
+                    if(wrapper.isSuccess()){
+                        if(wrapper.getCode()=="0000"){
+                            listener.onResponse(null);
+                        }else {
+                            listener.onFailure(wrapper.getMsg());
+                        }
+                    }else {
+                        listener.onFailure(wrapper.getMsg());
                     }
                 } catch (IOException e) {
                     if(e instanceof SocketTimeoutException){
-                        listener.onFailure(0);
+                        listener.onFailure("连接超时");
                         Log.e("login","连接超时");
                     }else if(e instanceof ConnectException){
-                        listener.onFailure(1);
+                        listener.onFailure("连接异常");
                         Log.e("login","连接异常");
                     }else if(e instanceof SocketException){
-                        listener.onFailure(2);
+                        listener.onFailure("无法访问服务器(服务器地址出错)");
                         Log.e("login","无法访问服务器(服务器地址出错)");
                     }
                 }

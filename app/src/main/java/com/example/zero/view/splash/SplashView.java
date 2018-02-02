@@ -15,9 +15,6 @@ public interface SplashView {
 
     void gotoLoginActivity();
 
-    void timeOutException();
+    void False(String message);
 
-    void connectException();
-
-    void socketException();
 }

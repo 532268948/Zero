@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface StringListener {
     public void onResponse(String response);
-    public void onFailure(Integer code);
+    public void onFailure(String message);
 }

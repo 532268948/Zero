@@ -46,14 +46,8 @@ public class SplashPresenter<V extends SplashView> extends BasePresenter<V> {
             }
 
             @Override
-            public void onFailure(Integer code) {
-                if (code==0){
-                    view.get().timeOutException();
-                }else if (code==1){
-                    view.get().connectException();
-                }else if(code==2){
-                    view.get().socketException();
-                }
+            public void onFailure(String message) {
+                view.get().False(message);
             }
         });
     }
