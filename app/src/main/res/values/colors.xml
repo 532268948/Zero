@@ -8,4 +8,6 @@
     <color name="white_70">#baffffff</color>
     <color name="white_20">#33ffffff</color>
     <color name="red">#e51c23</color>
+    <color name="darker_gray1_50">#80646464</color>
+    <color name="darker_gray2_30">#b33c3c3c</color>
 </resources>

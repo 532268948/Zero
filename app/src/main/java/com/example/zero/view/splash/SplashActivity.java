@@ -51,7 +51,6 @@ public class SplashActivity extends BaseActivity<SplashView,SplashPresenter<Spla
                 if(presenter.isRemember()){
                     presenter.Login();
                 }else {
-
                     presenter.goLogin();
                 }
             }
@@ -74,19 +73,4 @@ public class SplashActivity extends BaseActivity<SplashView,SplashPresenter<Spla
     public void False(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
-
-//    @Override
-//    public void timeOutException() {
-//        Toast.makeText(this,"连接超时",Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//    public void connectException() {
-//        Toast.makeText(this,"连接异常",Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//    public void socketException() {
-//        Toast.makeText(this,"无法连接服务器",Toast.LENGTH_SHORT).show();
-//    }
 }

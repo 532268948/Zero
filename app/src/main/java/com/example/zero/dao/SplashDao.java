@@ -2,7 +2,7 @@ package com.example.zero.dao;
 
 import android.content.Context;
 
-import com.example.zero.utils.StringListener;
+import com.example.zero.utils.Listener;
 
 
 /**
@@ -14,5 +14,5 @@ import com.example.zero.utils.StringListener;
 
 public interface SplashDao {
     public Boolean isRemember(Context context);
-    public Boolean Login(Context context, StringListener listener);
+    public Boolean Login(Context context, Listener<String> listener);
 }

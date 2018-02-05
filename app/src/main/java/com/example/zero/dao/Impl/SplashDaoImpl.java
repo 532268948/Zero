@@ -7,8 +7,7 @@ import com.example.zero.bean.ResponseWrapper;
 import com.example.zero.dao.SplashDao;
 import com.example.zero.utils.CacheUtil;
 import com.example.zero.utils.HttpUtil;
-import com.example.zero.utils.SecretUtil;
-import com.example.zero.utils.StringListener;
+import com.example.zero.utils.Listener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,19 +33,18 @@ public class SplashDaoImpl implements SplashDao {
     }
 
     @Override
-    public Boolean Login(final Context context, final StringListener listener) {
+    public Boolean Login(final Context context, final Listener<String> listener) {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String zero= SecretUtil.Encrypt(CacheUtil.getString(context,"zero"));
-                String password=SecretUtil.Encrypt(CacheUtil.getString(context,"password"));
+                String zero= CacheUtil.getString(context,"zero");
+                String password=CacheUtil.getString(context,"password");
                 String responseData=null;
                 try {
                     Response response = HttpUtil.sendOkHttpRequest(2,2,"login.json/zero="+zero+"&password="+password);
                     responseData=response.body().string();
                     Log.e("login","登陆成功");
-//                    responseData=SecretUtil.Decrypt(responseData);
                     ResponseWrapper<String> wrapper=new Gson().fromJson(responseData,new TypeToken<ResponseWrapper<String>>(){}.getType());
                     if(wrapper.isSuccess()){
                         if(wrapper.getCode()=="0000"){

@@ -21,12 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.login.LoginActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".view.guide.GuideActivity" />
         <activity
             android:name=".view.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.findpassword.PasswordActivity" />
+        <activity android:name=".view.register.RegisterActivity" />
+        <activity android:name=".view.login.Login2Activity"></activity>
     </application>
 
 </manifest>

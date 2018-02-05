@@ -9,4 +9,34 @@ package com.example.zero.view.login;
  */
 
 public interface LoginView {
+
+    void accountAdapter(String[] account);
+
+    void setHeadImage(String url);
+
+    void setEmptyHead();
+
+    String getAccount();
+
+    String getPassword();
+
+    void gotoPasswordActivity();
+
+    void gotoRegisterActivity();
+
+    void gotoLogin2Activity();
+
+    void gotoMainActivity();
+
+    void showLoading();
+
+    void hideLoading();
+
+    void errorPhone();
+
+    void errorPassword();
+
+    void errorLogin(String message);
+
+    Boolean CheckBox();
 }

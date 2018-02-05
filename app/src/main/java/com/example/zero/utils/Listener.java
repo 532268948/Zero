@@ -9,7 +9,7 @@ import java.util.List;
  * 项 目： Zero
  */
 
-public interface StringListener {
-    public void onResponse(String response);
+public interface Listener<T> {
+    public void onResponse(List<T> list);
     public void onFailure(String message);
 }
