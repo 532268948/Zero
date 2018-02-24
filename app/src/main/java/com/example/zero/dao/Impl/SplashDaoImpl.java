@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.zero.bean.ResponseWrapper;
+import com.example.zero.bean.Zero;
 import com.example.zero.dao.SplashDao;
 import com.example.zero.utils.CacheUtil;
 import com.example.zero.utils.HttpUtil;
@@ -33,7 +34,7 @@ public class SplashDaoImpl implements SplashDao {
     }
 
     @Override
-    public Boolean Login(final Context context, final Listener<String> listener) {
+    public Boolean Login(final Context context, final Listener<Zero> listener) {
 
         new Thread(new Runnable() {
             @Override
@@ -42,13 +43,15 @@ public class SplashDaoImpl implements SplashDao {
                 String password=CacheUtil.getString(context,"password");
                 String responseData=null;
                 try {
-                    Response response = HttpUtil.sendOkHttpRequest(2,2,"login.json/zero="+zero+"&password="+password);
+                    Response response = HttpUtil.sendOkHttpRequest(2,2,"index/login.json?zero="+zero+"&password="+password);
                     responseData=response.body().string();
                     Log.e("login","登陆成功");
-                    ResponseWrapper<String> wrapper=new Gson().fromJson(responseData,new TypeToken<ResponseWrapper<String>>(){}.getType());
+                    ResponseWrapper<Zero> wrapper=new Gson().fromJson(responseData,new TypeToken<ResponseWrapper<Zero>>(){}.getType());
                     if(wrapper.isSuccess()){
-                        if(wrapper.getCode()=="0000"){
+                        if(wrapper.getCode().equals("0000")){
                             listener.onResponse(null);
+                        }else if (wrapper.getCode().equals("0001")){
+                            listener.onFailure(wrapper.getMsg());
                         }else {
                             listener.onFailure(wrapper.getMsg());
                         }

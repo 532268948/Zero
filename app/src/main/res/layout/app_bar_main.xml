@@ -1,33 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.zero.view.main.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:background="@color/blue">
+       <de.hdodenhof.circleimageview.CircleImageView
+           android:id="@+id/head"
+           android:layout_width="?attr/actionBarSize"
+           android:layout_height="?attr/actionBarSize"
+           android:paddingLeft="14dp"
+           android:paddingTop="8dp"
+           android:paddingBottom="8dp"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="?attr/actionBarSize"
+           android:layout_centerInParent="true"
+           android:gravity="center"
+           android:text="消 息"
+           android:textSize="22dp"
+           android:textColor="@color/white"/>
+       <ImageView
+           android:layout_width="?attr/actionBarSize"
+           android:layout_height="?attr/actionBarSize"
+           android:layout_alignParentRight="true"
+           android:padding="14dp"
+           android:src="@drawable/person"/>
+   </RelativeLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            ></android.support.v4.view.ViewPager>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_main" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
-</android.support.design.widget.CoordinatorLayout>
+            app:tabBackground="@drawable/bg_tab"
+            ></android.support.design.widget.TabLayout>
+    </LinearLayout>
+</LinearLayout>

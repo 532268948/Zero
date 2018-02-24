@@ -19,7 +19,7 @@ public class ResponseWrapper<T> {
     /**返回信息*/
     private String msg;
     /**返回数据*/
-    private List<T> list;
+    private List<T> data;
 
     public boolean isSuccess() {
         return success;
@@ -30,11 +30,11 @@ public class ResponseWrapper<T> {
     }
 
     public List<T> getList() {
-        return list;
+        return  data;
     }
 
-    public void setList(List<T> list) {
-        this.list = list;
+    public void setList(List<T>  data) {
+        this. data =  data;
     }
 
     public String getMsg() {

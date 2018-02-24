@@ -1,5 +1,7 @@
 package com.example.zero.bean;
 
+import java.io.Serializable;
+
 /**
  * 作 者： ZUST_YTH
  * 日 期： 2018/2/5
@@ -8,9 +10,9 @@ package com.example.zero.bean;
  * 描 述：
  */
 
-public class Zero {
-    String zero;
-    String password;
+public class Zero{
+    private String zero;
+    private String password;
 
     public Zero(String zero, String password) {
         this.zero = zero;

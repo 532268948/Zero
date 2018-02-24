@@ -16,12 +16,13 @@ import android.view.ViewGroup;
  * 项 目： Zero
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragment {
     protected View mRootView;
     public Context mContext;
     protected boolean isVisible;
     protected boolean isPrepared;
-    protected boolean isLoad=false;
+    protected boolean isLoad = false;
+    public T presenter;
 
 
     @Override
@@ -41,9 +42,12 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
+        presenter = createPresenter();
+        presenter.attachView((V) this);
         setHasOptionsMenu(true);
     }
 
+    protected abstract T createPresenter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +72,7 @@ public abstract class BaseFragment extends Fragment {
             return;
         }
 
-        if(!isLoad){
+        if (!isLoad) {
             //loadAnimation();
             initData();
         }
@@ -76,11 +80,17 @@ public abstract class BaseFragment extends Fragment {
 
     protected void onInvisible() {
 
-}
+    }
 
     public abstract View initView();
 
     public abstract void initData();
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+    }
 
     //public abstract void loadAnimation();
 

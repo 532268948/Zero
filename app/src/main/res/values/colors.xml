@@ -10,4 +10,8 @@
     <color name="red">#e51c23</color>
     <color name="darker_gray1_50">#80646464</color>
     <color name="darker_gray2_30">#b33c3c3c</color>
+    <color name="gray1_70">#4da0a0a0</color>
+    <color name="gray2_70">#4dc8c8c8</color>
+    <color name="gray3">#bfbfbf</color>
+    <color name="blue">#03a9f4</color>
 </resources>

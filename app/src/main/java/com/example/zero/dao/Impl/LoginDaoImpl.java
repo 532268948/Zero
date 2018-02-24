@@ -50,16 +50,16 @@ public class LoginDaoImpl implements LoginDao {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String responseData = null;
                 try {
-                    Response response = HttpUtil.sendOkHttpRequest(2, 2, "index.json?login?zero=" + account);
-                    responseData = response.body().string();
-                    ResponseWrapper<String> wrapper = new Gson().fromJson(responseData, new TypeToken<String>() {
+                    Response response = HttpUtil.sendOkHttpRequest(2, 2, "index/head.json?zero=" + account);
+                    String responseData = response.body().string();
+                    ResponseWrapper<String> wrapper = new Gson().fromJson(responseData, new TypeToken<ResponseWrapper<String>>() {
                     }.getType());
+                    Log.e("test", "head:"+responseData);
                     if (wrapper.isSuccess()) {
-                        if (wrapper.getCode() == "0000") {
+                        if (wrapper.getCode().equals("0000")) {
                             listener.onResponse(wrapper.getList());
-                        } else if (wrapper.getCode() == "0001") {
+                        } else if (wrapper.getCode().equals("0001")) {
                             listener.onFailure(wrapper.getMsg());
                         }
                     } else {
@@ -86,19 +86,22 @@ public class LoginDaoImpl implements LoginDao {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String responseData = null;
                 try {
-                    Response response = HttpUtil.sendOkHttpRequest(2, 2, "index/login.json/zero="
+                    Log.e("test", "login1");
+                    Response response = HttpUtil.sendOkHttpRequest(2, 2, "index/login.json?zero="
                             + account + "&password=" + password);
-                    responseData = response.body().string();
-                    ResponseWrapper<Zero> wrapper = new Gson().fromJson(responseData, new TypeToken<Zero>() {
+                    String responseData = response.body().string();
+                    Log.e("test", "login2:"+responseData);
+                    ResponseWrapper<Zero> wrapper = new Gson().fromJson(responseData, new TypeToken<ResponseWrapper<Zero>>() {
                     }.getType());
+                    Log.e("test", "login3:" + wrapper.isSuccess());
                     if (wrapper.isSuccess()) {
-                        if (wrapper.getCode() == "0000") {
+                        if (wrapper.getCode().equals("0000")) {
+                            Log.e("test","login4:0000");
                             listener.onResponse(null);
-                            CacheUtil.putString(context,"zero",wrapper.getList().get(0).getZero());
-                            CacheUtil.putString(context,password,wrapper.getList().get(0).getPassword());
-                        } else if (wrapper.getCode() == "0001") {
+                            CacheUtil.putString(context, "zero", account);
+                            CacheUtil.putString(context, "password", password);
+                        } else if (wrapper.getCode().equals("0001")) {
                             listener.onFailure("该手机号未注册！！");
                         }
                     } else {
@@ -121,11 +124,11 @@ public class LoginDaoImpl implements LoginDao {
     }
 
     @Override
-    public void setRemember(final Context context) {
+    public void setRemember(final Context context, final Boolean is) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                CacheUtil.putBoolean(context,"isRemember",true);
+                CacheUtil.putBoolean(context, "isRemember", is);
             }
         }).start();
     }

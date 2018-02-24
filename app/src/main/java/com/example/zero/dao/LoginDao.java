@@ -22,6 +22,6 @@ public interface LoginDao {
 
     void Login(Context context,String account, String password, Listener<Zero> listener);
 
-    void setRemember(Context context);
+    void setRemember(Context context,Boolean is);
 
 }

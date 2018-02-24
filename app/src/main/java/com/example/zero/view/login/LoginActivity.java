@@ -21,6 +21,8 @@ import com.bumptech.glide.Glide;
 import com.example.zero.R;
 import com.example.zero.base.BaseActivity;
 import com.example.zero.presenter.login.LoginPresenter;
+import com.example.zero.utils.HttpUtil;
+import com.example.zero.utils.UrlUtil;
 import com.example.zero.view.findpassword.PasswordActivity;
 import com.example.zero.view.main.MainActivity;
 import com.example.zero.view.register.RegisterActivity;
@@ -122,7 +124,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter<LoginV
 
     @Override
     public void setHeadImage(String url) {
-        Glide.with(this).load(url).into(mHead);
+        Glide.with(this).load(UrlUtil.setUrl(url)).into(mHead);
     }
 
     @Override
@@ -157,6 +159,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter<LoginV
 
     @Override
     public void gotoMainActivity() {
+        this.finish();
         startActivity(new Intent(this, MainActivity.class));
     }
 

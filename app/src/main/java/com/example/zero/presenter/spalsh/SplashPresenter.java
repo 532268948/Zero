@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.example.zero.base.BasePresenter;
+import com.example.zero.bean.Zero;
 import com.example.zero.dao.Impl.SplashDaoImpl;
 import com.example.zero.dao.SplashDao;
 import com.example.zero.utils.Listener;
@@ -42,9 +43,9 @@ public class SplashPresenter<V extends SplashView> extends BasePresenter<V> {
     }
 
     public void Login(){
-        splashDao.Login(context, new Listener<String>() {
+        splashDao.Login(context, new Listener<Zero>() {
             @Override
-            public void onResponse(List<String> list) {
+            public void onResponse(List<Zero> list) {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
